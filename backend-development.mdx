@@ -1,0 +1,70 @@
+---
+title: 'Backend Development'
+description: 'Learn how to run our servers and make any necessary changes to configurations'
+---
+
+<Info>
+  **Prerequisite** You should have Python 3 correctly insalled.
+</Info>
+
+### The Stack
+
+The Zeeno api is developed using [FastAPI](https://fastapi.tiangolo.com/). It is hosted on an [AWS EC2](https://aws.amazon.com/ec2/) instance and we use [nginx](https://www.nginx.com/) as a reverse proxy.
+
+### Onboarding Resources
+
+[Creating a custom EC2 instance & hosting FastAPI](https://www.youtube.com/watch?v=SgSnz7kW-Ko&ab_channel=pixegami)  
+
+### Running the production server
+
+<Info>
+  **Prerequisite** You need to have access to our AWS EC2 instance.
+</Info>
+
+Use this when you want to check real-time traffic or when you need to make any changes to the production instance. Before making any changes on the production test them on a seperate EC2 instance and locally first.
+
+Step 1. SSH into the AWS EC2 instance:
+
+```bash
+ssh -i "zeeno_key.pem" ubuntu@ec2-34-218-116-78.us-west-2.compute.amazonaws.com
+```
+
+Step 2. Install the requirements (do this only the first time):
+
+```bash
+pip3 install -r requirements.txt
+```
+Step 3. Start the server locally:
+
+```bash
+python3 -m uvicorn main:app
+```
+By default the server will run on port 8000.
+
+
+### Running the server locally
+
+Use this when testing the server locally after eg. generating new api endpoints or changing existing endpoints.
+
+Step 1. Clone the [GitHUb repo](https://github.com/42enrique/zeeno-api)
+
+Step 2. Navigate to the `zeeno-api` directory
+
+Step 3. Install the requirements (do this only the first time):
+
+```bash
+pip3 install -r requirements.txt
+```
+
+Step 4. Install [uvicorn](https://www.uvicorn.org/) (do this only the first time):
+
+```bash
+pip3 install uvicorn
+```
+
+Step 5. Start the server locally:
+
+```bash
+python3 -m uvicorn main:app
+```
+By default the server will run on port 8000.

@@ -1,10 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
-  "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
-  },
+  "name": "Zeeno",
   "favicon": "/favicon.png",
   "colors": {
     "primary": "#9563FF",
@@ -21,62 +17,44 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:sophie@zeeno.ai"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
     "url": "https://dashboard.mintlify.com"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
   "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
     {
       "name": "Community",
       "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "url": "https://app.slack.com/client/T04UKJX9JA1/C04VC81GX4G"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "Notion",
+      "icon": "notes",
+      "url": "https://www.notion.so/Zeeno-Homepage-05f6000d56aa4d08afc9b88f21cf4280?pvs=4"
+    },
+    {
+      "name": "Airtable",
+      "icon": "database",
+      "url": "https://airtable.com/appZ02kmY9nO2P0Uv/tblV8ohx806Br5MIy/viwgrjMB4iv1T5yc5?blocks=hide"
+    },
+    {
+      "name": "API Docs",
+      "icon": "book",
+      "url": "http://34.218.116.78/docs#/"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
-    },
-    {
-      "group": "Essentials",
-      "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
-    },
-    {
-      "group": "API Documentation",
-      "pages": ["api-reference/authentication"]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
-      ]
+      "pages": ["introduction", "frontend-development", "backend-development"]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "twitter": "https://twitter.com/ZeenoAI",
+    "github": "https://github.com/42enrique/ai-keyboard",
+    "linkedin": "https://www.linkedin.com/company/zeenoai"
   }
 }
