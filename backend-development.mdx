@@ -14,6 +14,7 @@ The Zeeno api is developed using [FastAPI](https://fastapi.tiangolo.com/). It is
 ### Onboarding Resources
 
 [Creating a custom EC2 instance & hosting FastAPI](https://www.youtube.com/watch?v=SgSnz7kW-Ko&ab_channel=pixegami)  
+[ChatGPT Function Calling](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_call_functions_with_chat_models.ipynb)
 
 ### Running the production server
 
@@ -78,3 +79,7 @@ Step 5. Start the server locally:
 python3 -m uvicorn main:app
 ```
 By default the server will run on port 8000.
+
+### ChatGPT Function Calling
+
+We utilize [ChatGPT function calling](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_call_functions_with_chat_models.ipynb) in our api to allow the model to handle more complex user queries such as those linked to reminders.
