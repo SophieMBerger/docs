@@ -4,7 +4,7 @@ description: 'Get set-up to develop our iOS App using Xcode'
 ---
 
 <Info>
-  **Prerequisite** You should have Xcode correctly installed. And have been added to the Zeeno Apple Developer account.
+  **Prerequisite** You should have Xcode correctly installed. And have been added to the Slate Apple Developer account.
 </Info>
 
 ### The Stack
@@ -15,7 +15,11 @@ As we are building a keyboard that offers a native feel we are using Swift and S
 
 [Push Notifications](https://developer.apple.com/documentation/foundation/notificationcenter)  
 
-[StoreKit & Managing Subscriptions](https://developer.apple.com/documentation/storekit/in-app_purchase/)
+[StoreKit & Managing Subscriptions](https://developer.apple.com/documentation/storekit/in-app_purchase/)  
+
+[Custom URL Schemas](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app)  
+
+[URL Schema video](https://www.youtube.com/watch?v=kJjTkxNy0RU&ab_channel=SwiftTutorials)
 
 ### Getting Started
 Step 1. Clone the [GitHub repo](https://github.com/42enrique/ai-keyboard)
@@ -24,8 +28,13 @@ Step 2 Understand the architecture:
 
 #### Target App & Keyboard Extension
 The iOS app is split up into two components: the target app and the keyboard extension.
- The target app is where the user completes onbaording and can adjust their keyboard experience. The keyboard extension is the main component the user will be interacting with when using Zeeno.
+ The target app is where the user completes onbaording and can adjust their keyboard experience. The keyboard extension is the main component the user will be interacting with when using Slate.
  These two components communicate and share data with each other using [User Defaults](https://developer.apple.com/documentation/foundation/userdefaults).
+
+#### Custom URL Schema & Deep Links
+We use a [custom url schema](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app) to allow the keyboard extension to open the target app.
+ The url schema is `slate` and the identifier is `com.slate.ai`.
+
 
 #### SwiftUI & Views
 Most of the UI components of the Target app are built using SwiftUI, as this is more intuitive and recommended by Apple. You will see one View file for each screen in our app in the project hierarchy.
@@ -39,7 +48,7 @@ You will see two files in the project hierarchy that are called `NotificationsMa
 #### `IAPManager`
 This file manages all of the data transfer related with user subscriptions to the app using [StoreKit](https://developer.apple.com/documentation/storekit/in-app_purchase/).
 
-### App Store Review Zeeno Google Test Account
+### App Store Review Slate Google Test Account
 
 **email:** [testingzeeno@gmail.com](mailto:testingzeeno@gmail.com)
 

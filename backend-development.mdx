@@ -9,7 +9,7 @@ description: 'Learn how to run our servers and make any necessary changes to con
 
 ### The Stack
 
-The Zeeno api is developed using [FastAPI](https://fastapi.tiangolo.com/). It is hosted on an [AWS EC2](https://aws.amazon.com/ec2/) instance and we use [nginx](https://www.nginx.com/) as a reverse proxy.
+The Slate api is developed using [FastAPI](https://fastapi.tiangolo.com/). It is hosted on an [AWS EC2](https://aws.amazon.com/ec2/) instance and we use [nginx](https://www.nginx.com/) as a reverse proxy.
 
 ### Onboarding Resources
 
@@ -27,7 +27,7 @@ Use this when you want to check real-time traffic or when you need to make chang
 Step 1. SSH into the AWS EC2 instance:
 
 ```bash
-ssh -i "zeeno_key.pem" ubuntu@ec2-34-218-116-78.us-west-2.compute.amazonaws.com
+ssh -i "Slate_key.pem" ubuntu@ec2-34-218-116-78.us-west-2.compute.amazonaws.com
 ```
 
 Step 2. Install the requirements (do this only the first time):
@@ -46,7 +46,7 @@ By default the server will run on port 8000.
 <Info>
   Once you have made all desired changes use `tmux` to run the server in the background:
   ```bash
-cd Zeeno-api  
+cd Slate-api  
 tmux  
 python3 -m uvicorn main:app
 ```
@@ -57,9 +57,9 @@ python3 -m uvicorn main:app
 
 Use this when testing the server locally after eg. generating new api endpoints or changing existing endpoints.
 
-Step 1. Clone the [GitHUb repo](https://github.com/42enrique/zeeno-api)
+Step 1. Clone the [GitHUb repo](https://github.com/42enrique/Slate-api)
 
-Step 2. Navigate to the `zeeno-api` directory
+Step 2. Navigate to the `Slate-api` directory
 
 Step 3. Install the requirements (do this only the first time):
 
