@@ -48,6 +48,29 @@ You will see two files in the project hierarchy that are called `NotificationsMa
 #### `IAPManager`
 This file manages all of the data transfer related with user subscriptions to the app using [StoreKit](https://developer.apple.com/documentation/storekit/in-app_purchase/).
 
+### Apple Native Autocorrect & Text Prediction
+We have decided to implement Apples native autocorrect & text prediction using [UITextChecker](https://developer.apple.com/documentation/uikit/uitextchecker) on top of Fleksy's
+ offering as this has been more accurate.
+
+<Info>
+  **Thesere is some very intricate cursor movement and updating of the contents of the 'textDocumentProxy' which occurs as part of this implementation.
+</Info>
+
+#### Autocorrect
+In order to perform autocorrection we use the 'rangeOfMisspelledWord(in:range:startingAt:wrap:language:)' method in order to get the starting index of the first misspelled
+ word in the given range. After tha we use the 'guesses(forWordRange:in:language:)' method in order to generate a list of possible guesses for correct words. 
+ We then substitute the first of these words into the [textDocumentProxy](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/1618193-textdocumentproxy) using the native methods. 
+
+#### Text Prediction
+For normal keyboard use we implemented the text prediction inside of the 'TextPredictionSuggestionsFrameView', however, we are unable to use the same view when 
+inside the 'KeyboardAssistantView' as only one Fleksy [FrameView](https://docs.fleksy.com/sdk-android/api-reference-android/panelhelper/) can be open at a given time. 
+Hence we simply implemented the sub-views of the 'TextPredictionSuggestionsFrameView' directly into the 'KeyboardAssistantView'.
+
+The 'FrameView' consists of three components: the original word the user typed, the first predicted word, and the second predicted word. These predicted words are generated 
+using the 'completions(forPartialWordRange:in:language:)' method of the 'UITextChecker'.
+
+When the user selects the original word this word will be added to the internal dictionary as a new custom-word using the 'learnWord(_:)' method of the 'UITextChecker'.
+
 ### App Store Review Slate Google Test Account
 
 **email:** [testingzeeno@gmail.com](mailto:testingzeeno@gmail.com)
