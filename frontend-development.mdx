@@ -76,11 +76,17 @@ When the user selects the original word this word will be added to the internal 
 Sadly we cannot use the XCode debugger to debug issues with the custom keyboard extension. Instead Follow the below steps:
 
 Step 1. Connect the device you are using to run the app to your laptop with a cable.
+
 Step 2. Open up the `Console` app on your laptop.
+
 Step 3. In the left sidebar click on your iOS device and select "start streaming" on the main screen.
+
 Step 4. Add `import os.log` to the file you want to debug.
+
 Step 5. Use `os_log("DEBUG STATEMENT")` in order to add debug statements throughout your code.
+
 Step 6. Run the XCode project on the connected device and go back to the `Console` app on your laptop.
+
 Step 7. In the search field in the top right corder enter the debug statement you logged in your code to filter for it.
 
 ### App Store Review Slate Google Test Account
