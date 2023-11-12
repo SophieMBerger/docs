@@ -41,6 +41,11 @@
       "url": "https://airtable.com/appZ02kmY9nO2P0Uv/tblV8ohx806Br5MIy/viwgrjMB4iv1T5yc5?blocks=hide"
     },
     {
+      "name": "Firebase Console",
+      "icon": "firebase",
+      "url": "https://console.firebase.google.com/u/0/project/zeeno-ios/overview"
+    },
+    {
       "name": "API Docs",
       "icon": "book",
       "url": "https://zeenoapi.com/docs"
