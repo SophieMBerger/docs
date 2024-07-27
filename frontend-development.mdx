@@ -7,11 +7,11 @@ description: 'Get set-up to develop our iOS App using Xcode'
   **Prerequisite** You should have Xcode correctly installed. And have been added to the Slate Apple Developer account.
 </Info>
 
-### The Stack
+## The Stack
 
 As we are building a keyboard that offers a native feel we are using Swift and SwiftUI within the Xcode IDE.
 
-### Onboarding Resources
+## Onboarding Resources
 
 [Push Notifications](https://developer.apple.com/documentation/foundation/notificationcenter)  
 
@@ -21,57 +21,55 @@ As we are building a keyboard that offers a native feel we are using Swift and S
 
 [URL Schema video](https://www.youtube.com/watch?v=kJjTkxNy0RU&ab_channel=SwiftTutorials)
 
-### The current features
-Our keybaord currently supports the following features:
+## The current features
+Our keyboard currently supports the following features:
 1. Quick-Links Slingshot
 2. AI KeyboardAssistantView
 3. Clipboard Memory
 4. Slide-To-Type 
 5. Copy/Paste Shortcuts
 
-### Getting Started
+## Getting Started
 Step 1. Clone the [GitHub repo](https://github.com/slate-labs/slate-keyboard)
 
 Step 2. Understand the architecture by reading the below
 
 Step 3. Build and run the XCode project and walk through the codebase 
 
-Instead of relying on individual button views which the user interacts with, in our keyboard, we rely on coordinate mapping. This means that our keybaord consists of only one View
+## Our Architecture
+
+Instead of relying on individual button views which the user interacts with, in our keyboard, we rely on coordinate mapping. This means that our keyboard consists of only one View
 which registers all of the user's taps. Each of these taps is turned into coordinates, which are then mapped to the corrisponding key, and therefore the character that should be printed
 is determined. In addition to this we are able to implement dynamic tap areas, whihc is the dynamic adjusting of the tap area of a key depending on its likelyhood to be tapped, by simply
 adjusting the bounds of the coordinate space which gets mapped to the given key.
 
-#### Target App & Keyboard Extension
+We use the MVVM architecture, therefore our application is split up into Views and Models. This can clearly be seen when looking at the file structure of our XCode project.
+The Models are there to perform any data handling and computations, while the Views simply display the data contained int he Models. We only have one ViewController, which is the 
+'CustomKeyboardViewController' and this handles the coordinate matching explained above, as well as other some other keyboard interactions.
+
+### Target App & Keyboard Extension
 The iOS app is split up into two components: the target app and the keyboard extension.
  The target app is where the user completes onboarding and can adjust their keyboard experience. The keyboard extension is the main component the user will be interacting with when using Slate.
  These two components communicate and share data with each other using [User Defaults](https://developer.apple.com/documentation/foundation/userdefaults).
 
-#### Custom URL Schema & Deep Links
+### Custom URL Schema & Deep Links
 We use a [Deep Linking](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app) to allow the keyboard extension to open the target app or any other third-party applications.
+More details on the implementation of this can be found inside the 'Navigation' folder inside the XCode project.
 
-#### SwiftUI & Views
+### SwiftUI & Views
 Most of the UI components of the Target app are built using SwiftUI, as this is more intuitive and recommended by Apple. You will see one View file for each screen in our app in the project hierarchy. When creating the
 Preview object of the View it is important to add '.withPreviewEventTracking()' as this will allow the preview to work correctly in Xcode.
 
-#### `IAPManager`
+### `IAPManager`
 This file manages all of the data transfer related with user subscriptions to the app using [StoreKit](https://developer.apple.com/documentation/storekit/in-app_purchase/).
 
-#### Tracking
+### Tracking
 We use [PostHog](https://posthog.com/) in order to track our user's behaviour. In order to improve the efficiency of the tracking we have created a 'TrackingEngine' that is
 used to track any events in the code.
 
-#### Autocorrect
-**Current Approach** <br />
-In order to perform autocorrection we use the `rangeOfMisspelledWord(in:range:startingAt:wrap:language:)` method in order to get the starting index of the first misspelled
- word in the given range. After tha we use the `guesses(forWordRange:in:language:)` method in order to generate a list of possible guesses for correct words. 
- We then substitute the first of these words into the [textDocumentProxy](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/1618193-textdocumentproxy) using the native methods. 
-<br /> **Current Development** <br />
-The above autocorrect approach is not very accurate as it does not take into account the context of what the user is typing. As such, developing our own ML solution for autocorrect
-is one of the main projects we are currently working on. All of this is documented in our [Notion workspace](https://www.notion.so/slate-hq/Slate-Team-HQ-a9a2d3e1ca5c449ea36613c39519ff36).
-
 ## Debugging the Custom Keyboard Extension
 
-Sadly we cannot use the XCode debugger to debug issues with the custom keyboard extension. Instead Follow the below steps:
+If you are having issues using the XCode debugger to debug the custom keyboard extension. Instead Follow the below steps:
 
 Step 1. Connect the device you are using to run the app to your laptop with a cable.
 
