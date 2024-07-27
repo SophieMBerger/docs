@@ -52,7 +52,7 @@
     },
     {
       "name": "PostHog",
-      "icon": "graph",
+      "icon": "data",
       "url": "https://us.posthog.com/project/67221/events?onboarding_completed=true"
     },
     {
