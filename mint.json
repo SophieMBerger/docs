@@ -37,7 +37,7 @@
     },
     {
       "name": "Repository",
-      "icon": "database",
+      "icon": "github",
       "url": "https://github.com/slate-labs/slate-keyboard"
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "name": "PostHog",
-      "icon": "analytics",
+      "icon": "graph",
       "url": "https://us.posthog.com/project/67221/events?onboarding_completed=true"
     },
     {
