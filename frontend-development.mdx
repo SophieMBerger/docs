@@ -61,11 +61,11 @@ We use [PostHog](https://posthog.com/) in order to track our user's behaviour. I
 used to track any events in the code.
 
 #### Autocorrect
-**Current Approach**/n
+**Current Approach** <br />
 In order to perform autocorrection we use the `rangeOfMisspelledWord(in:range:startingAt:wrap:language:)` method in order to get the starting index of the first misspelled
  word in the given range. After tha we use the `guesses(forWordRange:in:language:)` method in order to generate a list of possible guesses for correct words. 
  We then substitute the first of these words into the [textDocumentProxy](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/1618193-textdocumentproxy) using the native methods. 
-**Current Development**/n
+<br /> **Current Development** <br />
 The above autocorrect approach is not very accurate as it does not take into account the context of what the user is typing. As such, developing our own ML solution for autocorrect
 is one of the main projects we are currently working on. All of this is documented in our [Notion workspace](https://www.notion.so/slate-hq/Slate-Team-HQ-a9a2d3e1ca5c449ea36613c39519ff36).
 
