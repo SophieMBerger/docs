@@ -33,22 +33,32 @@
     {
       "name": "Notion",
       "icon": "notes",
-      "url": "https://www.notion.so/Zeeno-Homepage-05f6000d56aa4d08afc9b88f21cf4280?pvs=4"
+      "url": "https://www.notion.so/slate-hq/Slate-Team-HQ-a9a2d3e1ca5c449ea36613c39519ff36"
     },
     {
-      "name": "Airtable",
+      "name": "Repository",
       "icon": "database",
-      "url": "https://airtable.com/appZ02kmY9nO2P0Uv/tblV8ohx806Br5MIy/viwgrjMB4iv1T5yc5?blocks=hide"
-    },
-    {
-      "name": "Firebase Console",
-      "icon": "google",
-      "url": "https://console.firebase.google.com/u/0/project/zeeno-ios/overview"
+      "url": "https://github.com/slate-labs/slate-keyboard"
     },
     {
       "name": "API Docs",
       "icon": "book",
       "url": "https://zeenoapi.com/docs"
+    },
+    {
+      "name": "Linear",
+      "icon": "database",
+      "url": "https://linear.app/zeeno"
+    },
+    {
+      "name": "PostHog",
+      "icon": "analytics",
+      "url": "https://us.posthog.com/project/67221/events?onboarding_completed=true"
+    },
+    {
+      "name": "Airtable",
+      "icon": "database",
+      "url": "https://airtable.com/appZ02kmY9nO2P0Uv/tblV8ohx806Br5MIy/viwgrjMB4iv1T5yc5?blocks=hide"
     }
   ],
   "navigation": [
@@ -58,8 +68,8 @@
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/getslate_ai",
-    "github": "https://github.com/42enrique/ai-keyboard",
-    "linkedin": "https://www.linkedin.com/company/zeenoai"
+    "twitter": "https://x.com/slate_hq",
+    "github": "https://github.com/slate-labs/slate-keyboard",
+    "linkedin": "https://www.linkedin.com/company/slatehq"
   }
 }

@@ -21,55 +21,53 @@ As we are building a keyboard that offers a native feel we are using Swift and S
 
 [URL Schema video](https://www.youtube.com/watch?v=kJjTkxNy0RU&ab_channel=SwiftTutorials)
 
-### Getting Started
-Step 1. Clone the [GitHub repo](https://github.com/42enrique/ai-keyboard)
+### The current features
+Our keybaord currently supports the following features:
+1. Quick-Links Slingshot
+2. AI KeyboardAssistantView
+3. Clipboard Memory
+4. Slide-To-Type 
+5. Copy/Paste Shortcuts
 
-Step 2 Understand the architecture:
+### Getting Started
+Step 1. Clone the [GitHub repo](https://github.com/slate-labs/slate-keyboard)
+
+Step 2. Understand the architecture by reading the below
+
+Step 3. Build and run the XCode project and walk through the codebase 
+
+Instead of relying on individual button views which the user interacts with, in our keyboard, we rely on coordinate mapping. This means that our keybaord consists of only one View
+which registers all of the user's taps. Each of these taps is turned into coordinates, which are then mapped to the corrisponding key, and therefore the character that should be printed
+is determined. In addition to this we are able to implement dynamic tap areas, whihc is the dynamic adjusting of the tap area of a key depending on its likelyhood to be tapped, by simply
+adjusting the bounds of the coordinate space which gets mapped to the given key.
 
 #### Target App & Keyboard Extension
 The iOS app is split up into two components: the target app and the keyboard extension.
- The target app is where the user completes onbaording and can adjust their keyboard experience. The keyboard extension is the main component the user will be interacting with when using Slate.
+ The target app is where the user completes onboarding and can adjust their keyboard experience. The keyboard extension is the main component the user will be interacting with when using Slate.
  These two components communicate and share data with each other using [User Defaults](https://developer.apple.com/documentation/foundation/userdefaults).
 
 #### Custom URL Schema & Deep Links
-We use a [custom url schema](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app) to allow the keyboard extension to open the target app.
- The url schema is `slate` and the identifier is `com.slate.ai`.
-
+We use a [Deep Linking](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app) to allow the keyboard extension to open the target app or any other third-party applications.
 
 #### SwiftUI & Views
-Most of the UI components of the Target app are built using SwiftUI, as this is more intuitive and recommended by Apple. You will see one View file for each screen in our app in the project hierarchy.
- When it comes to the keyboard extension we are restricted to using Swift for all developement as we are using the [Fleksy SDK](https://docs.fleksy.com/) to configure the custom keyboard.
-
-#### Notifications Managers
-You will see two files in the project hierarchy that are called `NotificationsManager`. These two files handle all of the data transfer connected with scheduling and sending the user push notifications.
- Two files exist (one for the target app, the other for the keyboard extension) as each file can only have Target Membership in one of these components due to reliance on other
-  files that can only be part of one component.
+Most of the UI components of the Target app are built using SwiftUI, as this is more intuitive and recommended by Apple. You will see one View file for each screen in our app in the project hierarchy. When creating the
+Preview object of the View it is important to add '.withPreviewEventTracking()' as this will allow the preview to work correctly in Xcode.
 
 #### `IAPManager`
 This file manages all of the data transfer related with user subscriptions to the app using [StoreKit](https://developer.apple.com/documentation/storekit/in-app_purchase/).
 
-### Apple Native Autocorrect & Text Prediction
-We have decided to implement Apples native autocorrect & text prediction using [UITextChecker](https://developer.apple.com/documentation/uikit/uitextchecker) on top of Fleksy's
- offering as this has been more accurate.
-
-<Info>
-  **Thesere is some very intricate cursor movement and updating of the contents of the `textDocumentProxy` which occurs as part of this implementation.
-</Info>
+#### Tracking
+We use [PostHog](https://posthog.com/) in order to track our user's behaviour. In order to improve the efficiency of the tracking we have created a 'TrackingEngine' that is
+used to track any events in the code.
 
 #### Autocorrect
+##### Current Approach
 In order to perform autocorrection we use the `rangeOfMisspelledWord(in:range:startingAt:wrap:language:)` method in order to get the starting index of the first misspelled
  word in the given range. After tha we use the `guesses(forWordRange:in:language:)` method in order to generate a list of possible guesses for correct words. 
  We then substitute the first of these words into the [textDocumentProxy](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/1618193-textdocumentproxy) using the native methods. 
-
-#### Text Prediction
-For normal keyboard use we implemented the text prediction inside of the `TextPredictionSuggestionsFrameView`, however, we are unable to use the same view when 
-inside the `KeyboardAssistantView` as only one Fleksy [FrameView](https://docs.fleksy.com/sdk-android/api-reference-android/panelhelper/) can be open at a given time. 
-Hence we simply implemented the sub-views of the `TextPredictionSuggestionsFrameView` directly into the `KeyboardAssistantView`.
-
-The `FrameView` consists of three components: the original word the user typed, the first predicted word, and the second predicted word. These predicted words are generated 
-using the `completions(forPartialWordRange:in:language:)` method of the `UITextChecker`.
-
-When the user selects the original word this word will be added to the internal dictionary as a new custom-word using the `learnWord(_:)` method of the `UITextChecker`.
+##### Current Development
+The above autocorrect approach is not very accurate as it does not take into account the context of what the user is typing. As such, developing our own ML solution for autocorrect
+is one of the main projects we are currently working on. All of this is documented in our [Notion workspace](https://www.notion.so/slate-hq/Slate-Team-HQ-a9a2d3e1ca5c449ea36613c39519ff36).
 
 ## Debugging the Custom Keyboard Extension
 
